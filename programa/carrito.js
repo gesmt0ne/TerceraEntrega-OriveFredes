@@ -4,7 +4,9 @@ const carrito = {
     items: [],
 
     agregarProducto: function (id, cantidad) {
-        const producto = productos.find(item => item.id === `${id}`);
+        const producto = productos.find(item => item.id === id);
+
+        console.log('Producto encontrado:', producto);
 
         if (!producto) {
             throw new Error(`El producto con ID ${id} no existe.`);

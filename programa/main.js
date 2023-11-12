@@ -15,6 +15,8 @@ function obtenerCantidadDeProductos() {
 function obtenerPrecioProducto(indice) {
     const precioProducto = parseFloat(prompt(`Ingrese el precio del producto ${indice + 1}`));
 
+    console.log(`Precio ingresado para el producto ${indice + 1}:`, precioProducto);
+
     if (isNaN(precioProducto) || precioProducto <= 0) {
         alert(`El precio ingresado para el producto ${indice + 1} no es válido, inténtelo de nuevo.`);
         return 0;
@@ -36,21 +38,26 @@ function calcularCostoTotal() {
         return;
         }
 
-        carrito.agregarProducto(i, precioProducto);
+        carrito.agregarProducto(i +1 , precioProducto);
     }
 
     alert(`El costo total de los productos es: ${carrito.calcularTotal().toFixed(2)}`);
 }
 
-calcularCostoTotal();
+document.addEventListener('DOMContentLoaded', () => {
+    const calcularBtn = document.getElementById('calcularBtn');
+    const mensajeArea = document.getElementById('mensajeArea');
+
+    if (calcularBtn) {
+        calcularBtn.addEventListener('click', () => {
+            calcularCostoTotal();
+
+            
+            const resultado = carrito.calcularTotal().toFixed(2);
+            mensajeArea.textContent = `El costo total de los productos es ${resultado}`;
+        });
+    }
+});
 
 
-/* const usuario = {
-    nombre: fran,
-    edad: 27
-};
 
-const productosLS = localStorage.setItem("usuario", JSON.stringify(usuario));
-
-console.log(usuario);
- */
